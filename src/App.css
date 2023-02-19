@@ -1,38 +1,73 @@
 .App {
+
+
+  max-height: 600;
+  min-height: 400;
+
+  max-width: 400;
+  min-width: 300;
+
+  border: 3px solid blue;
+  background-color: rgb(168, 191, 115);
+}
+
+/* .parent_div {
+  border: 3px solid blue;
+} */
+
+.child_div {
+  margin: 20px;
+  padding: 5px;
+
+  display: flex; /**/
+  flex-direction: column; 
+  border: 2px solid red; 
+}
+
+.child_div>.left {
+  margin: 20px;
+  padding: 5px;
+  border: 2px solid red;
+  text-align: left;
+  display: inline-block;
+}
+
+.child_div>.center {
+  margin: 20px;
+  padding: 5px;
+  border: 2px solid red;
   text-align: center;
+  display: inline-block;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.labelitem {
+  margin: 5px;
+  padding: 5px;
+  border: 2px solid rgba(255, 255, 0, 0.916);
+  display: flex;/**/
+  flex-direction: row;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.labelitem input[type="text"] {
+  flex-grow: 1;
+  text-align: right;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
+.labelitem label {
+  text-align: right;
+  margin-right: 10px;
+  flex-basis: 100px; /**/
+  background-color: rgba(255, 255, 0, 0.916);
+}
+
+/* 這個寫法是把.label底下的元素 用這個規則規範 */
+.labelitem > * {        
+  margin-right: 10px;
+}
+
+.child_div .buttonitem {
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+  text-align: center;
+  font-size: 16px;
+  width: 150px;
 }
