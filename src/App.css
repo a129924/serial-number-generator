@@ -34,8 +34,6 @@
 }
 
 .child_div>.center {
-  margin: 20px;
-  padding: 5px;
   border: 2px solid red;
   text-align: center;
   display: inline-block;
@@ -71,7 +69,9 @@
 .labelitem .label {
   flex: 1;
   text-align: right;
-  flex-basis: 10%;
+  flex-basis: 150px;
+  min-width: 150px;
+  max-width: 150px;
   /**/
   background-color: rgba(255, 255, 0, 0.916);
 }
@@ -83,6 +83,8 @@
   align-items: center;
   flex-basis: 5%;
   flex-shrink: 0;
+  min-width: 50px;
+  max-width: 50px;
 }
 
 .labelitem .checkbox .ABC {
