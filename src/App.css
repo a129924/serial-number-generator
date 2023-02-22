@@ -1,11 +1,11 @@
 .App {
 
 
-  max-height: 600;
-  min-height: 400;
+  max-height: 800;
+  min-height: 600;
 
-  max-width: 400;
-  min-width: 300;
+  max-width: 1000;
+  min-width: 800;
 
   border: 3px solid blue;
   background-color: rgb(168, 191, 115);
@@ -19,9 +19,10 @@
   margin: 20px;
   padding: 5px;
 
-  display: flex; /**/
-  flex-direction: column; 
-  border: 2px solid red; 
+  display: flex;
+  /**/
+  flex-direction: column;
+  border: 2px solid red;
 }
 
 .child_div>.left {
@@ -44,26 +45,60 @@
   margin: 5px;
   padding: 5px;
   border: 2px solid rgba(255, 255, 0, 0.916);
-  display: flex;/**/
+  display: flex;
+  /**/
   flex-direction: row;
+  white-space: nowrap;
 }
 
-.labelitem input[type="text"] {
-  flex-grow: 1;
-  text-align: right;
+.labelitem .textbox {
+  flex-grow: 8;
+  height: auto;
+  border: 2px solid rgba(209, 82, 18, 0.196);
 }
 
-.labelitem label {
+.labelitem .textbox input[type="text"] {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
   text-align: right;
-  margin-right: 10px;
-  flex-basis: 100px; /**/
+  flex-basis: 85%;
+  flex-shrink: 0;
+}
+
+.labelitem .label {
+  flex: 1;
+  text-align: right;
+  flex-basis: 10%;
+  /**/
   background-color: rgba(255, 255, 0, 0.916);
 }
 
+.labelitem .checkbox  {
+  flex: 1;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  flex-basis: 5%;
+  flex-shrink: 0;
+}
+
+.labelitem .checkbox .ABC {
+  flex: 1;
+  border: 2px rgb(167, 75, 75);
+  flex-grow: 1;
+  flex-shrink: 0;
+  flex-basis: 5%;
+}
+
+
 /* 這個寫法是把.label底下的元素 用這個規則規範 */
-.labelitem > * {        
+.labelitem>* {
   margin-right: 10px;
 }
+
 
 .child_div .buttonitem {
   align-items: center;
