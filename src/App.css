@@ -1,14 +1,12 @@
 .App {
-
-
-  max-height: 800;
-  min-height: 600;
-
-  max-width: 1000;
-  min-width: 800;
-
+  max-height: 800px;
+  min-height: 600px;
+  max-width: 1000px;
+  min-width: 800px;
   border: 3px solid blue;
   background-color: rgb(168, 191, 115);
+  padding: 20px;
+  box-sizing: border-box;
 }
 
 /* .parent_div {
@@ -107,4 +105,12 @@
   text-align: center;
   font-size: 16px;
   width: 150px;
+}
+
+.grid {
+  display: grid;
+  /* grid-template-columns: repeat(21, 1fr); */
+  grid-column-start: 2;
+
+  justify-items: center;
 }

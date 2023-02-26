@@ -3,12 +3,12 @@ import './App.css';
 
 
 const settingData = [
-  { labelname: "長度", id: 1, hasCheckBox: false },
-  { labelname: "組數", id: 2, hasCheckBox: false },
-  { labelname: "相似度", id: 3, hasCheckBox: true },
-  { labelname: "禁用的數字", id: 4, hasCheckBox: true },
-  { labelname: "禁用的大寫英文字母", id: 5, hasCheckBox: true },
-  { labelname: "禁用的小寫英文字母", id: 6, hasCheckBox: true },
+  { labelname: "長度", id: 1, hasCheckBox: false, placeholderText: "序號長度", regexPattern: "[0-9]{1,2}" },
+  { labelname: "組數", id: 2, hasCheckBox: false, placeholderText: "序號產生組數", regexPattern: "[0-9]{1,8}" },
+  { labelname: "相似度", id: 3, hasCheckBox: true, placeholderText: "各個序號相似度", regexPattern: ".+" },
+  { labelname: "禁用的數字", id: 4, hasCheckBox: true, placeholderText: "序號禁用的數字", regexPattern: "^[0-9](,[0-9])*,?$" },
+  { labelname: "禁用的大寫英文字母", id: 5, hasCheckBox: true, placeholderText: "序號禁用的大寫英文字母", regexPattern: "^[A-Z](,[A-Z])*,?$" },
+  { labelname: "禁用的小寫英文字母", id: 6, hasCheckBox: true, placeholderText: "序號禁用的大寫英文字母", regexPattern: "^[a-z](,[a-z])*,?$" },
 ]
 
 
@@ -26,7 +26,7 @@ const LoginForm = (props) => {
         目前account:{account}
       </div>
       <div>
-        <button onClick={(e) => { window.alert(account)}}>按我</button>
+        <button onClick={(e) => { window.alert(account) }}>按我</button>
       </div>
     </div>
   )
@@ -36,19 +36,36 @@ const LoginForm = (props) => {
 
 
 const InputForm = (props) => {
-  // const [inputValue, SetInputValue] = useState("")
+  const [inputValue, setInputValue] = useState("")
+  const [isEditable, setIsEditable] = useState(true);
+  const [regexValue, setRegexValue] = useState("")
+
   const shouldRenderCheckbox = props.hasCheckBox
+
   return (
     <div className="labelitem" key={props.id}>
       <div className="label">
         <label>{props.labelname}</label>
       </div>
       <div className="textbox">
-        <input type="text" />
+        <input
+          type="text"
+          onChange={(e) => {
+            setInputValue(e.target.value);
+            setRegexValue((value) => (e.target.validity.valid ? e.target.value : value));
+          }}
+          disabled={!isEditable}
+          placeholder={props.placeholderText}
+          pattern={props.regexPattern}
+          value={regexValue}
+        />
       </div>
       <div className="checkbox">
         {shouldRenderCheckbox ? (
-          <input type="checkbox" name="check" defaultChecked={true} />
+          <input type="checkbox" name="check" defaultChecked={true} onChange={(event) => {
+            setIsEditable(event.target.checked);
+            console.log(inputValue)
+          }} />
         ) : (
           <div className="ABC">
           </div>
@@ -62,7 +79,14 @@ const InputForm = (props) => {
   )
 }
 
-
+const CheckBoxRowForm = (props) => {
+  const labels = [<label key={0}>{}</label>]
+  const gridColumns = Array.from({ length: props.length+1 }, () => '1fr').join(' ');
+  for (let i = 1; i < props.length+1; i++) {
+    labels.push(<label key={i}>{i}</label>)
+  }
+  return (<div className="grid" style={{ gridTemplateColumns: gridColumns}}>{labels}</div>)
+}
 
 
 function App() {
@@ -70,9 +94,9 @@ function App() {
   const generatorLoginForm = (labelList) => {
     const LoginForms = []
     for (const i in labelList) {
-      LoginForms.push(<LoginForm label={labelList[i]} /> )
+      LoginForms.push(<LoginForm label={labelList[i]} />)
     }
-  // 參考用 不能動
+    // 參考用 不能動
 
 
 
@@ -86,7 +110,14 @@ function App() {
   const generatorInputForm = (settingData) => {
     const InputForms = []
     settingData.forEach((setting, _) => {
-      InputForms.push(<InputForm id={setting.id} labelname={setting.labelname} hasCheckBox={setting.hasCheckBox} />)
+      InputForms.push(
+        <InputForm
+          id={setting.id}
+          labelname={setting.labelname}
+          hasCheckBox={setting.hasCheckBox}
+          placeholderText={setting.placeholderText}
+          regexPattern={setting.regexPattern}
+        />)
 
     })
     return InputForms
@@ -104,9 +135,12 @@ function App() {
         {/* {generatorLoginForm(["A", "B", "C"])} */}
         {generatorInputForm(settingData)}
       </div>
-
+      <div className="child_div" style={{display:"grid"}}>
+        <CheckBoxRowForm length={20}/>
+      </div>
+      
     </div>
-    
+
   )
 }
 
