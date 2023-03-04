@@ -1,38 +1,6 @@
 import React, { useState } from "react";
 import './App.css';
 
-
-const settingData = [
-  { labelname: "長度", id: 1, hasCheckBox: false, placeholderText: "序號長度", regexPattern: "[0-9]{1,2}" },
-  { labelname: "組數", id: 2, hasCheckBox: false, placeholderText: "序號產生組數", regexPattern: "[0-9]{1,8}" },
-  { labelname: "相似度", id: 3, hasCheckBox: true, placeholderText: "各個序號相似度", regexPattern: ".+" },
-  { labelname: "禁用的數字", id: 4, hasCheckBox: true, placeholderText: "序號禁用的數字", regexPattern: "^[0-9](,[0-9])*,?$" },
-  { labelname: "禁用的大寫英文字母", id: 5, hasCheckBox: true, placeholderText: "序號禁用的大寫英文字母", regexPattern: "^[A-Z](,[A-Z])*,?$" },
-  { labelname: "禁用的小寫英文字母", id: 6, hasCheckBox: true, placeholderText: "序號禁用的大寫英文字母", regexPattern: "^[a-z](,[a-z])*,?$" },
-]
-
-
-
-// 參考用 不能動
-const LoginForm = (props) => {
-
-  const [account, setAccount] = useState("");
-
-  return (
-    <div>
-      <input type="text" onChange={(e) => { setAccount(e.target.value) }} />
-      <label>{props.label}</label>
-      <div>
-        目前account:{account}
-      </div>
-      <div>
-        <button onClick={(e) => { window.alert(account) }}>按我</button>
-      </div>
-    </div>
-  )
-}
-// 參考用 不能動
-
 const InputRow = (props) => {
   const [regexValue, setRegexValue] = useState("")
   const [isEditable, setIsEditable] = useState(true);
