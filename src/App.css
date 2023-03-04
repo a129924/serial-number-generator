@@ -7,6 +7,8 @@
   background-color: rgb(168, 191, 115);
   padding: 20px;
   box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
 }
 
 /* .parent_div {
@@ -14,9 +16,8 @@
 } */
 
 .child_div {
-  margin: 20px;
   padding: 5px;
-
+  margin: 3px;
   display: flex;
   /**/
   flex-direction: column;
@@ -109,8 +110,6 @@
 
 .grid {
   display: grid;
-  /* grid-template-columns: repeat(21, 1fr); */
-  grid-column-start: 2;
-
+  align-items: center;
   justify-items: center;
 }
